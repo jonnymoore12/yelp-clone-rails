@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'web_helper'
+require_relative '../helpers/web_helper'
 
 feature 'Restaurants' do
   context 'no restaurants have been added' do

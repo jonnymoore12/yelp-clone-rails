@@ -9,18 +9,17 @@ def sign_up(email: "jonny@gmail.com",
   click_button 'Sign up'
 end
 
-# def harry_creates_restaurant
-#   harry = User.create(email: "harry@hasrestaurant.com",
-#                       password: "password",
-#                       password_confirmation: "password")
-#   bk = Restaurant.new(name: "Burger King")
-#   bk.user = harry
-#   bk.save
-# end
-
 def jonny_creates_a_restaurant
   sign_up
   click_link "Add a restaurant"
   fill_in "Name", with: "Central Perk"
   click_button "Create Restaurant"
+end
+
+def leave_review(thoughts: "Generic thought", rating: 3)
+  visit '/restaurants'
+  click_link 'Review KFC'
+  fill_in 'Thoughts', with: thoughts
+  select rating, from: 'Rating'
+  click_button 'Leave Review'
 end
