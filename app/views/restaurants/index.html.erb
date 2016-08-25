@@ -10,6 +10,9 @@
       <%= review.thoughts %>
       <%= review.rating %>
       <br />
+      <%= link_to "Endorse Review", review_endorsements_path(restaurant), method: :post %>
+      <%= pluralize(review.endorsements.count, "endorsements") %>
+      <br />
     <% end %>
     <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %>
     <% if restaurant.user == current_user %>
