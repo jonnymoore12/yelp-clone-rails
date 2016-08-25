@@ -20,6 +20,6 @@ feature 'Reviewing' do
             password: "password",
             password_confirmation: "password")
     leave_review(rating: 3)
-    expect(page).to have_content "Average rating: 4"
+    expect(page).to have_content "Average rating: ★★★★☆"
   end
 end
