@@ -15,7 +15,7 @@ describe Restaurant, type: :model do
 
   it { is_expected.to have_many :reviews }
 
-  describe 'reviews' do
+  describe 'Reviews' do
     describe 'build_with_user' do
 
       let(:user){ User.create email: 'test@test.com' }
@@ -32,5 +32,38 @@ describe Restaurant, type: :model do
         expect(review.user).to eq user
       end
     end
+
+    describe '#Average rating' do
+      let(:user1){ User.create(email: "user@mail.com", password: "password",
+                                password_confirmation: "password")}
+      let(:user2){ User.create(email: "user2@mail.com", password: "secret",
+                                password_confirmation: "secret")}
+      context 'No reviews' do
+        it "returns 'N/A' when there are no reviews" do
+          restaurant = Restaurant.create(name: "The Swan With Two Necks")
+          expect(restaurant.average_rating).to eq 'N/A'
+        end
+      end
+
+      context '1 review' do
+        it "returns the rating when there is 1 review" do
+          restaurant = Restaurant.create(name: "The Swan With Two Necks")
+          restaurant.reviews.create(rating:4)
+          expect(restaurant.average_rating).to eq 4
+        end
+      end
+
+      context 'Multiple reviews' do
+        it "returns the average rating based on all the reviews" do
+          restaurant = Restaurant.create(name: "The Swan With Two Necks")
+          restaurant.reviews.create_with_user({rating:5}, user1)
+          restaurant.reviews.create_with_user({rating:1}, user2)
+          # require 'pry'; binding.pry
+          expect(restaurant.average_rating).to eq 3
+        end
+      end
+    end
+
   end
+
 end
