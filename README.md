@@ -3,7 +3,7 @@
 A clone of the website Yelp, made during week 8 of Makers Academy using Ruby on Rails.
 
 ### Screenshot
-<img width="1280" alt="yelp clone" src="https://cloud.githubusercontent.com/assets/18581870/18226441/de47482c-7201-11e6-8d19-cb0e8f268ba5.png">
+<img width="1280" alt="yelp clone" src="https://cloud.githubusercontent.com/assets/18581870/18226469/8e9a81a8-7202-11e6-94b0-640c77921a3a.png">
 
 
 ### How to use the app
