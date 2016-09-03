@@ -6,11 +6,11 @@
     <h3>Average rating: <%=star_rating(restaurant.average_rating) %></h3>
     <%= restaurant.description %>
     <br />
-    <%= image_tag restaurant.image.url(:thumb) %>
+    <%= image_tag restaurant.image.url(:thumb), :class => "img-rounded"  %>
     <br />
     <% restaurant.reviews.all.each do |review| %>
       <%= review.thoughts %>
-      <%= review.rating %>
+      <%=star_rating(restaurant.average_rating) %>
       <br />
       <%= link_to "Endorse Review", review_endorsements_path(restaurant), method: :post %>
       <%= pluralize(review.endorsements.count, "endorsements") %>
