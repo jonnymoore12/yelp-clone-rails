@@ -11,7 +11,7 @@ end
 
 def jonny_creates_a_restaurant
   sign_up
-  click_link "Add a restaurant"
+  click_button "Add a restaurant"
   fill_in "Name", with: "Central Perk"
   click_button "Create Restaurant"
 end

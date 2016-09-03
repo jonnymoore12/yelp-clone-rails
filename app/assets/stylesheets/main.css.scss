@@ -1,4 +1,29 @@
-a:link {
-  color: red;
-  // background-color: red;
+.navbar {
+  background-color: #428bca !important;
+  color: white !important;
+  font-family: 'Baloo Chettan';
+}
+
+.navbar-brand {
+  color: white !important;
+}
+
+ul.nav li a, ul.nav li a:visited {
+    color: white !important;
+}
+
+ul.nav li a:hover, ul.nav li a:active {
+    color: rgb(149, 149, 149) !important;
+}
+
+body {
+  font-family: 'Baloo Chettan' !important;
+}
+
+.resto-name {
+  margin-bottom: -18px !important;
+}
+
+h3 {
+  margin-bottom: 0px !important;
 }
