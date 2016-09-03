@@ -6,7 +6,7 @@ feature 'Restaurants' do
     scenario 'should display a prompt to add restaurants' do
       visit '/restaurants'
       expect(page).to have_content 'No restaurants yet'
-      expect(page).to have_link 'Add a restaurant'
+      expect(page).to have_button 'Add a restaurant'
     end
   end
 
@@ -23,10 +23,13 @@ feature 'Restaurants' do
   end
 
   context 'Creating restaurants' do
-    scenario 'should be able to add a restaurant' do
+    before do
       sign_up
       visit '/restaurants'
-      click_link "Add a restaurant"
+      click_button 'Add a restaurant'
+    end
+
+    scenario 'should be able to add a restaurant' do
       fill_in "Name", with: "KFC"
       click_button "Create Restaurant"
       expect(current_path).to eq "/restaurants"
@@ -35,9 +38,6 @@ feature 'Restaurants' do
 
     context 'an invalid restaurant' do
       it 'does not let you submit a name that is too short' do
-        sign_up
-        visit '/restaurants'
-        click_link 'Add a restaurant'
         fill_in 'Name', with: 'kf'
         click_button 'Create Restaurant'
         expect(page).not_to have_css 'h2', text: 'kf'
@@ -58,8 +58,11 @@ feature 'Restaurants' do
   end
 
   context 'Editing restaurants' do
-    scenario 'lets users edit restaurants' do
+    before do
       jonny_creates_a_restaurant
+    end
+
+    scenario 'lets users edit restaurants' do
       click_link "Edit Central Perk"
       fill_in 'Name', with: 'Central Perk'
       fill_in 'Description', with: 'Gunther cracks me up'
@@ -70,26 +73,25 @@ feature 'Restaurants' do
     end
 
     scenario 'users cannot edit restaurants that they did not create' do
-      jonny_creates_a_restaurant
       click_link "Sign out"
       sign_up(email: "harry@norestaurant")
       visit '/restaurants'
       expect(page).not_to have_content("Edit Central Perk")
-
     end
   end
 
   context 'Deleting restaurants' do
+    before do
+      jonny_creates_a_restaurant
+    end
 
     scenario 'removes a restaurant when a user clicks a link' do
-      jonny_creates_a_restaurant
       click_link 'Delete Central Perk'
       expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
     end
 
     scenario 'user can only delete restaurants they created' do
-      jonny_creates_a_restaurant
       click_link "Sign out"
       sign_up(email: "jose@aintgotnorestaurant")
       visit '/restaurants'
